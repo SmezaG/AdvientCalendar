@@ -18,10 +18,10 @@ static class Day3
         string number = "";
         int numberOut = 0;
         int answer = 0;
-        
 
 
-        string[] lineas = imputText.Split('\n');
+
+        string[] lineas = imputText.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         char[,] matriz = new char[lineas.Length, lineas.Max(l => l.Length)];
 
         for (int i = 0; i < lineas.Length; i++)
@@ -34,47 +34,104 @@ static class Day3
         }
 
 
+
         for (int i = 0; i < matriz.GetLength(0); i++)
         {
+
+            number = "";
             for (int j = 0; j < matriz.GetLength(1); j++)
             {
-                if (matriz[i,j].ToString() == ".")
+
+                if (int.TryParse(matriz[i, j].ToString(), out numberOut))
                 {
-                    //Ya hemos encontrado un número
-                    //Comprobamos los carácteres especiales alrededor
+                    number = number + numberOut.ToString();
+                }
+                else
+                {
                     if (number.Length > 0)
                     {
                         (int x, int y) minCoord = (i, j - number.Length);
                         (int x, int y) maxCoord = (i, j - 1);
-
-                        //Comprobamos si es válido
                         if (CompruebaNumeroValido(matriz, minCoord, maxCoord))
                         {
-                            //Console.WriteLine(number);
                             answer = answer + int.Parse(number);
                         }
-
-                        number = "";
-
                     }
+
+                    number = "";
                 }
-                else if (int.TryParse(matriz[i, j].ToString(),out numberOut))
+
+                if (matriz.GetLength(1) - 1 == j)
                 {
-                    number = number + numberOut.ToString();
-                }
-                else //Si es simbolo es número válido porque está al lado
-                {
-                    if (number.Length > 0)// Si es menor que 0 es el salto de línea
+                    if (number.Length > 0)
                     {
-                        //Console.WriteLine(number);
-                        answer = answer + int.Parse(number);
-                        number = "";
+                        (int x, int y) minCoord = (i, j - (number.Length - 1));
+                        (int x, int y) maxCoord = (i, j);
+                        if (CompruebaNumeroValido(matriz, minCoord, maxCoord))
+                        {
+                            answer = answer + int.Parse(number);
+                        }
                     }
-              
                 }
-              
+
             }
         }
+
+
+        //for (int i = 0; i < matriz.GetLength(0); i++)
+        //{
+        //    for (int j = 0; j < matriz.GetLength(1); j++)
+        //    {
+        //        if (matriz[i,j].ToString() == ".")
+        //        {
+        //            //Ya hemos encontrado un número
+        //            //Comprobamos los carácteres especiales alrededor
+        //            if (number.Length > 0)
+        //            {
+        //                (int x, int y) minCoord = (i, j - number.Length);
+        //                (int x, int y) maxCoord = (i, j - 1);
+
+        //                //Comprobamos si es válido
+        //                if (CompruebaNumeroValido(matriz, minCoord, maxCoord))
+        //                {
+        //                    //Console.WriteLine(number);
+        //                    answer = answer + int.Parse(number);
+        //                }
+
+        //                number = "";
+
+        //            }
+        //        }
+        //        else if (int.TryParse(matriz[i, j].ToString(),out numberOut))
+        //        {
+        //            number = number + numberOut.ToString();
+        //        }
+        //        else //Si es simbolo es número válido porque está al lado
+        //        {
+        //            string iqwe = matriz[i, j].ToString();
+        //            if (matriz[i, j].ToString() == "\r") //Salto de línea, lo evitamos, no cuenta como valor válido
+        //            {
+
+        //                (int x, int y) minCoord = (i, j - number.Length);
+        //                (int x, int y) maxCoord = (i, j - 1);
+        //                if (CompruebaNumeroValido(matriz, minCoord, maxCoord))
+        //                {
+        //                    //Console.WriteLine(number);
+        //                    answer = answer + int.Parse(number);
+        //                    number = "";
+        //                }
+        //            }
+        //            else if (number.Length > 0)
+        //            {
+        //                answer = answer + int.Parse(number);
+        //            }
+        //            //Tanto si acaba la línea como si he añadido a la respuesta, reiniciamosla variable
+        //            number = "";
+
+        //        }
+
+        //    }
+        //}
 
         Console.WriteLine(answer);
 
