@@ -261,11 +261,11 @@ static class Day3
                     var claveABuscar = (fila, columna);
                     if (diccCoord.ContainsKey(claveABuscar))
                     {
-                        diccCoord[claveABuscar].Add(numberParam);
+                        diccCoord[claveABuscar].Add(int.Parse(numberParam));
                     }
                     else
                     {
-                        diccCoord[claveABuscar] = new List<int> { numberParam };
+                        diccCoord[claveABuscar] = new List<int> { int.Parse(numberParam) };
                     }
 
                     res = true;
@@ -287,11 +287,11 @@ static class Day3
                     var claveABuscar = (fila, columna);
                     if (diccCoord.ContainsKey(claveABuscar))
                     {
-                        diccCoord[claveABuscar].Add(numberParam);
+                        diccCoord[claveABuscar].Add(int.Parse(numberParam));
                     }
                     else
                     {
-                        diccCoord[claveABuscar] = new List<int> { numberParam };
+                        diccCoord[claveABuscar] = new List<int> { int.Parse(numberParam) };
                     }
 
                     res = true;
@@ -323,11 +323,11 @@ static class Day3
                         var claveABuscar = (fila, columna);
                         if (diccCoord.ContainsKey(claveABuscar))
                         {
-                            diccCoord[claveABuscar].Add(numberParam);
+                            diccCoord[claveABuscar].Add(int.Parse(numberParam));
                         }
                         else
                         {
-                            diccCoord[claveABuscar] = new List<int> { numberParam };
+                            diccCoord[claveABuscar] = new List<int> { int.Parse(numberParam) };
                         }
 
                         res = true;
@@ -348,11 +348,11 @@ static class Day3
                         var claveABuscar = (fila, columna);
                         if (diccCoord.ContainsKey(claveABuscar))
                         {
-                            diccCoord[claveABuscar].Add(numberParam);
+                            diccCoord[claveABuscar].Add(int.Parse(numberParam));
                         }
                         else
                         {
-                            diccCoord[claveABuscar] = new List<int> { numberParam };
+                            diccCoord[claveABuscar] = new List<int> { int.Parse(numberParam) };
                         }
 
                         res = true;
