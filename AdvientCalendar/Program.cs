@@ -17,7 +17,9 @@ namespace AdvientCalendar
             //Day4.Part1();
             //Day4.Part2();
             //Day5a.Part1();
-            Day5a.Part2();
+            //Day5a.Part2();
+            //Day6.Part1();
+            Day6.Part2();
 
         }
     }
